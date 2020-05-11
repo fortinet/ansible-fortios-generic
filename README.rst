@@ -254,3 +254,4 @@ Hint
 ----
 
 - The feature is only supported in HTTPAPI. It is not supported in FortiOS API. According to Ansible's official recommendations, FortiOS API will be dreprecated in Ansible.
+- Warning: It's preferable to use FortiOS Ansible Collection instead unless some features are not available there.
