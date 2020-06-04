@@ -338,9 +338,10 @@ def json_generic(data, fos):
                        vdom=vdom)
 
 
-def is_successful_status(status):
-    return status['status'] == "success" or \
-        status['http_method'] == "DELETE" and status['http_status'] == 404
+def is_successful_status(resp):
+    return 'status' in resp and resp['status'] == 'success' \
+        or 'http_method' in resp and resp['http_method'] == 'DELETE' \
+        and 'http_status' in resp and resp['http_status'] == 404
 
 
 def fortios_json(data, fos):
@@ -398,7 +399,7 @@ def main():
     if not is_error:
         module.exit_json(changed=has_changed, meta=result)
     else:
-        module.fail_json(msg="Error in repo", meta=result)
+        module.fail_json(msg="Unable to precess the request, please provide correct parameters and make sure the path exists.", meta=result)
 
 
 if __name__ == '__main__':
